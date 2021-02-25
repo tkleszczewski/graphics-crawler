@@ -1,14 +1,21 @@
-const getXKomGraphicCards = require('./utils/getXKomGraphicCards');
-const getMoreleGraphicCards = require('./utils/getMoreleGraphicCards');
+require('dotenv').config();
+const express = require('express');
+const bodyParser = require('body-parser');
 
+const connectMongoDb = require('./db/connect');
 
-(async () => {
-    const xKomGraphicCards = await getXKomGraphicCards();
-    const moreleGraphicCards = await getMoreleGraphicCards();
-    const graphicCards = xKomGraphicCards.concat(moreleGraphicCards);
-    return graphicCards
-})();
+const { PORT, MONGO_DB_URI } = process.env;
 
+connectMongoDb(MONGO_DB_URI);
 
+const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-//TODO DB;
+app.get('*', (req, res) => {
+    res.json({ message: 'Hello from crawler' });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server up and running on PORT: ${PORT}`);
+})
