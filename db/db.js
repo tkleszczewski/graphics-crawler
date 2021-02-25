@@ -29,4 +29,7 @@ function connectMongoDb(dbURL) {
     });
 }
 
-module.exports = connectMongoDb;
+module.exports = {
+    connectMongoDb,
+    mongoose,
+};

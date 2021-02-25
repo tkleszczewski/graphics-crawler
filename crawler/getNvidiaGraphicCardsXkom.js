@@ -1,7 +1,11 @@
 const urls = ['https://www.x-kom.pl/g-5/c/346-karty-graficzne-nvidia.html?per_page=90&page=1', 'https://www.x-kom.pl/g-5/c/346-karty-graficzne-nvidia.html?per_page=90&page=2'];
 const puppeteer = require('puppeteer');
+const { DateTime } = require('luxon');
 
 async function getXKomDataNvidia(url) {
+    let date = DateTime.now();
+    date = `${date.day}/${date.month}/${date.year}`;
+
     const browser = await puppeteer.launch();
     let graphicCards = [];
     const page = await browser.newPage();
@@ -42,7 +46,7 @@ async function getXKomDataNvidia(url) {
     producers.forEach((producer, index) => {
         graphicCards[index].producer = producer;
     });
-    graphicCards.forEach(graphicCard => { graphicCard.chipset = 'Nvidia'; graphicCard.ecommerce = 'xkom' });
+    graphicCards.forEach(graphicCard => { graphicCard.chipset = 'Nvidia'; graphicCard.ecommerce = 'xkom', graphicCard.date = date });
     return graphicCards;
 }
 

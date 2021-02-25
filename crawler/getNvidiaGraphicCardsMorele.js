@@ -4,8 +4,12 @@ const urls = [
     'https://www.morele.net/kategoria/karty-graficzne-12/,,,,,,,,0,,,,8143O!2836.!2835/3/'
 ];
 const puppeteer = require('puppeteer');
+const { DateTime } = require('luxon');
 
 async function getMoreleDataNvidia(url) {
+    let date = DateTime.now();
+    date = `${date.day}/${date.month}/${date.year}`;
+
     const browser = await puppeteer.launch();
     let graphicCards = [];
     const page = await browser.newPage();
@@ -35,7 +39,8 @@ async function getMoreleDataNvidia(url) {
             price: prices[i],
             producer: producers[i],
             isAvailable: true,
-            ecommerce: 'Morele'
+            ecommerce: 'Morele',
+            date,
         };
         graphicCards.push(graphicCard);
     }
