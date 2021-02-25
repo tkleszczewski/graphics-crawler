@@ -1,14 +1,14 @@
 const getXKomGraphicCards = require('./utils/getXKomGraphicCards');
 const getMoreleGraphicCards = require('./utils/getMoreleGraphicCards');
 
-
-(async () => {
+async function getGraphicCards() {
     const xKomGraphicCards = await getXKomGraphicCards();
     const moreleGraphicCards = await getMoreleGraphicCards();
-    const graphicCards = xKomGraphicCards.concat(moreleGraphicCards);
+    const graphicCards = {
+        xkom: xKomGraphicCards,
+        morele: moreleGraphicCards,
+    };
     return graphicCards
-})();
+}
 
-
-
-//TODO DB;
+module.exports = getGraphicCards;

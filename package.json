@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/tkleszczewski/graphics-crawler#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "puppeteer": "^7.1.0"
   }
 }

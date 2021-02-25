@@ -42,7 +42,7 @@ async function getXKomDataAMD(url) {
     producers.forEach((producer, index) => {
         graphicCards[index].producer = producer;
     });
-    graphicCards.forEach(graphicCard => graphicCard.chipset = 'AMD');
+    graphicCards.forEach(graphicCard => { graphicCard.chipset = 'AMD'; graphicCard.ecommerce = 'xkom' });
     browser.close();
     return graphicCards;
 }

@@ -31,7 +31,8 @@ async function getMoreleDataAMD(url) {
             chipset: 'AMD',
             price: prices[i],
             producer: producers[i],
-            isAvailable: true
+            isAvailable: true,
+            ecommerce: 'Morele'
         };
         graphicCards.push(graphicCard);
     }
